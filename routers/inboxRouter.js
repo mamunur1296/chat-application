@@ -11,9 +11,10 @@ const router = express.Router();
 
 // internal Imports
 const { getInbox } = require("../controller/inboxcontroller");
+const titlehandler = require("../middlewares/common/titlehandler");
 
 // login page
-router.get("/inbox", getInbox);
+router.get("/inbox", titlehandler("inbox"), getInbox);
 
 // module export
 module.exports = router;

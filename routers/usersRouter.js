@@ -11,9 +11,10 @@ const router = express.Router();
 
 // internal Imports
 const { getuser } = require("../controller/usercontroller");
+const titlehandler = require("../middlewares/common/titlehandler");
 
 // login page
-router.get("/users", getuser);
+router.get("/users", titlehandler("users"), getuser);
 
 // module export
 module.exports = router;

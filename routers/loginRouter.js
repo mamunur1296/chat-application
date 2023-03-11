@@ -11,9 +11,10 @@ const router = express.Router();
 
 // internal Imports
 const { getlogin } = require("../controller/logincontroller .js");
+const titlehandler = require("../middlewares/common/titlehandler");
 
 // login page
-router.get("/", getlogin);
+router.get("/", titlehandler("login"), getlogin);
 
 // module export
 module.exports = router;

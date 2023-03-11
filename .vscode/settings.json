@@ -1,5 +1,11 @@
 {
     "cSpell.words": [
         "middlewares"
-    ]
+    ],
+    "[html]": {
+        "editor.suggest.insertMode": "replace",
+        "editor.formatOnSave": false
+
+    }
+    
 }
