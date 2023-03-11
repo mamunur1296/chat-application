@@ -17,8 +17,10 @@ const cookieParser = require("cookie-parser");
 const {
   notFoundHandler,
   errorHandler,
-} = require("../middlewares/common/errorhandler");
-
+} = require("./middlewares/common/errorhandler");
+const loginRouter = require("./routers/loginRouter");
+const usersRouter = require("./routers/usersRouter");
+const inboxRouter = require("./routers/inboxRouter");
 // Create Express App
 const app = express();
 
@@ -49,12 +51,13 @@ app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
 
 // Parse Cookies
+
 app.use(cookieParser(process.env.COOKIE_SECRET));
 
 // Routes Setup
-// app.use("/", loginRouter);
-// app.use("/users", usersRouter);
-// app.use("/inbox", inboxRouter);
+app.use("/", loginRouter);
+app.use("/", usersRouter);
+app.use("/", inboxRouter);
 
 // 404 Not Found Handler
 app.use(notFoundHandler);
