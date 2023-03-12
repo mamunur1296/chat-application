@@ -1,11 +1,11 @@
 {
-    "cSpell.words": [
-        "middlewares"
-    ],
-    "[html]": {
-        "editor.suggest.insertMode": "replace",
-        "editor.formatOnSave": false
-
-    }
-    
+  "cSpell.words": [
+    "filesize",
+    "middlewares",
+    "uploade"
+  ],
+  "[html]": {
+    "editor.suggest.insertMode": "replace",
+    "editor.formatOnSave": false
+  }
 }

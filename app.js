@@ -9,7 +9,6 @@
 // External Imports
 const express = require("express");
 const dotenv = require("dotenv");
-const mongoose = require("mongoose");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 
@@ -21,6 +20,7 @@ const {
 const loginRouter = require("./routers/loginRouter");
 const usersRouter = require("./routers/usersRouter");
 const inboxRouter = require("./routers/inboxRouter");
+const dbConnection = require("./utilities/mongoose.connect");
 // Create Express App
 const app = express();
 
@@ -28,18 +28,7 @@ const app = express();
 dotenv.config();
 
 // Connect to Database
-mongoose
-  .connect(process.env.DB_URL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => {
-    console.log("Connected to database successfully");
-  })
-  .catch((err) => {
-    console.log(`Error connecting to database: ${err}`);
-  });
-
+dbConnection();
 // Parse Request Body
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -55,9 +44,9 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(cookieParser(process.env.COOKIE_SECRET));
 
 // Routes Setup
-app.use("/", loginRouter);
-app.use("/", usersRouter);
-app.use("/", inboxRouter);
+app.use(loginRouter);
+app.use(usersRouter);
+app.use(inboxRouter);
 
 // 404 Not Found Handler
 app.use(notFoundHandler);
